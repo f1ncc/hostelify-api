@@ -1,4 +1,6 @@
-module.exports = (req, res, next) => {
-  req.requestTime = new Date().toISOString();
+const app = require('./../app');
+
+app.use((req, res, next) => {
+  req.timestamp = new Date().toISOString();
   next();
-};
+});
