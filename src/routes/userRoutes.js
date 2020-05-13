@@ -1,7 +1,10 @@
 const express = require('express');
 const userController = require('./../controllers/userController');
+const checkID = require('./../middleware/check_id');
 
 const router = express.Router();
+
+router.param('id', checkID);
 
 router
   .route('/')
