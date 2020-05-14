@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const schema = mongoose.Schema;
-const hostelSchema = new schema({
+const { Schema, model, Types } = require('mongoose');
+
+const hostelSchema = new Schema({
   location: {
     type: String,
     required: true,
@@ -9,6 +9,9 @@ const hostelSchema = new schema({
     //boys or girls
     type: String,
     required: true,
+    enum: {
+      values: ['boys', 'girls'],
+    },
   },
   warden: {
     type: String,
@@ -21,22 +24,23 @@ const hostelSchema = new schema({
   },
   rooms: {
     //total rooms
-    types: Number,
+    type: Number,
   },
   beds: {
-    total: Number,
-    occupid: Number,
-    vacant: Number,
+    total: {
+      type: Number,
+    },
+    occupied: {
+      type: Number,
+    },
+    vacant: {
+      type: Number,
+    },
   },
   incharge: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'Admin',
   },
-  facilites: [
-    //array of facilities like wifi,hot-water
-    {
-      type: string,
-    },
-  ],
+  facilites: [String],
 });
-module.exports = mongoose.model('Hostel', hostelSchema);
+module.exports = model('Hostel', hostelSchema);

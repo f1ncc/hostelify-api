@@ -10,6 +10,13 @@ const hostelerSchema = new Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    required: [true, 'Provide your gender'],
+    enum: {
+      values: ['Female', 'Male'],
+    },
+  },
   email: {
     type: String,
     validate: [isEmail, 'please provide a valid email id'],
