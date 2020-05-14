@@ -1,5 +1,5 @@
 const Hosteler = require('./../models/hosteler');
-const timestamp = require('../middleware/timestamp');
+// const timestamp = require('../middleware/timestamp');
 
 exports.getAllhostelers = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ exports.getAllhostelers = async (req, res) => {
 
     res.status(200).json({
       status: 'Success',
-      requestedAt: timestamp,
+      requestedAt: req.timestamp,
       results: hostelers.length,
       data: {
         hostelers,
@@ -26,7 +26,7 @@ exports.gethosteler = async (req, res) => {
 
     res.status(200).json({
       status: 'Success',
-      requestedAt: timestamp,
+      requestedAt: req.timestamp,
       data: {
         hosteler,
       },
@@ -44,7 +44,7 @@ exports.createhosteler = async (req, res) => {
 
     res.status(201).json({
       status: 'Success',
-      requestedAt: timestamp,
+      requestedAt: req.timestamp,
       // message: 'Success',
       data: {
         hosteler: newhosteler,
@@ -70,7 +70,7 @@ exports.updatehosteler = async (req, res) => {
 
     res.status(200).json({
       status: 'Success',
-      requestedAt: timestamp,
+      requestedAt: req.timestamp,
       data: {
         updatedhosteler,
       },
@@ -88,7 +88,7 @@ exports.deletehosteler = async (req, res) => {
 
     res.status(204).json({
       status: 'Success',
-      requestedAt: timestamp,
+      requestedAt: req.timestamp,
       data: null,
     });
   } catch (err) {
