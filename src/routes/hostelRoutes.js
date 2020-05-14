@@ -1,15 +1,15 @@
 const express = require('express');
 const hostelController = require('./../controllers/hostelController');
-const checkID = require('./../middleware/check_id');
+// const checkID = require('./../middleware/check_id');
 
 const router = express.Router();
 
-router.param('id', checkID);
+// router.param('id', checkID);
 
 router
   .route('/')
   .get(hostelController.getAllhostels)
-  .post(hostelController.checkBody, hostelController.createhostel);
+  .post(hostelController.createhostel);
 
 router
   .route('/:id')

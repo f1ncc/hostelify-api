@@ -1,16 +1,16 @@
-const Hostel = require('./../models/hostel');
+const Hosteler = require('./../models/hosteler');
 const timestamp = require('../middleware/timestamp');
 
-exports.getAllhostels = async (req, res) => {
+exports.getAllhostelers = async (req, res) => {
   try {
-    const hostels = await Hostel.find();
+    const hostelers = await Hosteler.find();
 
     res.status(200).json({
       status: 'Success',
       requestedAt: timestamp,
-      results: hostels.length,
+      results: hostelers.length,
       data: {
-        hostels,
+        hostelers,
       },
     });
   } catch (err) {
@@ -20,15 +20,15 @@ exports.getAllhostels = async (req, res) => {
     });
   }
 };
-exports.gethostel = async (req, res) => {
+exports.gethosteler = async (req, res) => {
   try {
-    const hostel = await Hostel.findById(req.params.id);
+    const hosteler = await Hosteler.findById(req.params.id);
 
     res.status(200).json({
       status: 'Success',
       requestedAt: timestamp,
       data: {
-        hostel,
+        hosteler,
       },
     });
   } catch (err) {
@@ -38,16 +38,16 @@ exports.gethostel = async (req, res) => {
     });
   }
 };
-exports.createhostel = async (req, res) => {
+exports.createhosteler = async (req, res) => {
   try {
-    const newHostel = await Hostel.create(req.body);
+    const newhosteler = await Hosteler.create(req.body);
 
     res.status(201).json({
       status: 'Success',
       requestedAt: timestamp,
       // message: 'Success',
       data: {
-        hostel: newHostel,
+        hosteler: newhosteler,
       },
     });
   } catch (err) {
@@ -57,9 +57,9 @@ exports.createhostel = async (req, res) => {
     });
   }
 };
-exports.updatehostel = async (req, res) => {
+exports.updatehosteler = async (req, res) => {
   try {
-    const updatedHostel = await Hostel.findByIdAndUpdate(
+    const updatedhosteler = await Hosteler.findByIdAndUpdate(
       req.params.id,
       req.body,
       {
@@ -72,7 +72,7 @@ exports.updatehostel = async (req, res) => {
       status: 'Success',
       requestedAt: timestamp,
       data: {
-        updatedHostel,
+        updatedhosteler,
       },
     });
   } catch (err) {
@@ -82,9 +82,9 @@ exports.updatehostel = async (req, res) => {
     });
   }
 };
-exports.deletehostel = async (req, res) => {
+exports.deletehosteler = async (req, res) => {
   try {
-    await Hostel.findByIdAndDelete(req.params.id);
+    await Hosteler.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
       status: 'Success',
