@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const schema = mongoose.Schema;
+const { Schema, model, Types } = require('mongoose');
+const { isEmail } = require('validator');
 
-const HostelerSchema = new schema({
+const hostelerSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -12,6 +12,7 @@ const HostelerSchema = new schema({
   },
   email: {
     type: String,
+    validate: [isEmail, 'please provide a valid email id'],
     required: true,
     unique: true,
   },
@@ -24,7 +25,7 @@ const HostelerSchema = new schema({
     required: true,
   },
   roomDetails: {
-    roomNo: string, //room no . allocated
+    roomNo: String, //room no . allocated
     bedNumber: Number, //bed no. allocated
   },
   dateOfBirth: {
@@ -42,7 +43,7 @@ const HostelerSchema = new schema({
     type: String,
   },
   hostel: {
-    type: mongoose.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'Hostel',
   },
   localGuardian: {
@@ -52,4 +53,4 @@ const HostelerSchema = new schema({
   },
 });
 
-module.exports = mongoose.model('Hosteler', HostelerSchema);
+module.exports = model('Hosteler', hostelerSchema);

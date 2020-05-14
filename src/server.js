@@ -17,6 +17,7 @@ const DB = process.env.DATABASE.replace(
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
+        useUnifiedTopology: true
       }
     );
     console.log('DB is connected');

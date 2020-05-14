@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model, Types } = require('mongoose');
+const { isEmail } = require('validator');
 
 const adminSchema = new Schema({
   name: {
@@ -10,6 +10,7 @@ const adminSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    validate: [isEmail, 'please provide a valid email id'],
   },
   mobileNo: {
     type: Number,
@@ -18,10 +19,10 @@ const adminSchema = new Schema({
   hostels: [
     //array of hostels
     {
-      type: mongoose.Types.ObjectId,
+      type: Types.ObjectId,
       ref: 'Hostel',
     },
   ],
 });
 
-module.exports = mongoose.model('Admin', adminSchema);
+module.exports = model('Admin', adminSchema);
