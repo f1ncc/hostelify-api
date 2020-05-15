@@ -104,3 +104,29 @@ exports.AdminSignout = async (req, res) => {
     });
   }
 };
+
+/**
+ * only for testing and debugging
+ * hence in development mode
+ */
+if (process.env.NODE_ENV === 'development') {
+  exports.getAllAdmins = async (req, res) => {
+    try {
+      const admins = await AdminModel.find();
+
+      res.status(200).json({
+        status: 'success',
+        requestedAt: req.timestamp,
+        results: admins.length,
+        data: {
+          admins,
+        },
+      });
+    } catch (err) {
+      res.status(404).json({
+        status: 'fail',
+        message: err,
+      });
+    }
+  };
+}
