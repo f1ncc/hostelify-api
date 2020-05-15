@@ -12,6 +12,10 @@ const adminSchema = new Schema({
     unique: true,
     validate: [isEmail, 'please provide a valid email id'],
   },
+  password: {
+    type: String,
+    required: true,
+  },
   mobileNo: {
     type: Number,
     required: true,
@@ -21,6 +25,11 @@ const adminSchema = new Schema({
     {
       type: Types.ObjectId,
       ref: 'Hostel',
+    },
+  ],
+  tokens: [
+    {
+      type: String,
     },
   ],
 });

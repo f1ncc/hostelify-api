@@ -25,16 +25,20 @@ const hostelSchema = new Schema({
   rooms: {
     //total rooms
     type: Number,
+    required: true,
   },
   beds: {
     total: {
       type: Number,
+      required: true,
     },
     occupied: {
       type: Number,
+      required: true,
     },
     vacant: {
       type: Number,
+      required: true,
     },
   },
   incharge: {
