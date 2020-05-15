@@ -13,6 +13,7 @@
     "no-return-await": "warn",
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
+    // "dot-notation": ["error", { "allowKeywords": false }],
     "import/no-useless-path-segments": [
       "error",
       {

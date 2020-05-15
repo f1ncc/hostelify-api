@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const hostelRouter = require('./routes/hostelRoutes');
 const hostelerRouter = require('./routes/hostelerRoutes');
 const adminRouter = require('./routes/adminRoutes');
+
 const app = express();
 
 //Middleware for logging

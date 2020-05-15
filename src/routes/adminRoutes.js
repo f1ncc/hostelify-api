@@ -4,6 +4,7 @@ const {
   AdminLogin,
   AdminSignout,
 } = require('../controllers/adminController');
+
 const router = express.Router();
 router.route('/signup').post(signupAdmin);
 router.route('/login').post(AdminLogin);

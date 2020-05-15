@@ -14,7 +14,6 @@ const DB = process.env.DATABASE.replace(
   try {
     await connect(
       process.env.NODE_ENV === 'development' ? process.env.DATABASE_LOCAL : DB,
-
       {
         useNewUrlParser: true,
         useCreateIndex: true,

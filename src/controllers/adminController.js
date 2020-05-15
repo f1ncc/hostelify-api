@@ -1,8 +1,9 @@
 const { sign } = require('jsonwebtoken');
+// const mongoose = require('mongoose');
+const { hash, compare } = require('bcrypt');
 const AdminModel = require('../models/admin');
 // const authMiddleware = require('../middleware/checkAuthToken');
-const { hash, compare } = require('bcrypt');
-const mongoose = require('mongoose');
+
 const generateAuthToken = async (user) => {
   try {
     const token = await sign(user, 'basheer');
@@ -18,7 +19,9 @@ exports.signupAdmin = async (req, res) => {
     const emailAlreadyExist = await AdminModel.findOne({ email });
 
     if (emailAlreadyExist) {
-      throw new Error({ msg: 'Email already Exist' });
+      throw new Error({
+        msg: 'An account with this email has already been created',
+      });
     }
 
     const hashedPassword = await hash(password, 12);
