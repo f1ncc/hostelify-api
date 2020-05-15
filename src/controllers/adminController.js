@@ -92,6 +92,11 @@ exports.AdminSignout = async (req, res) => {
     const user = await AdminModel.findById(req.user._id);
     user.tokens = [];
     user.save();
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.timestamp,
+      data: null,
+    });
   } catch (err) {
     res.status(401).json({
       status: 'fail',
