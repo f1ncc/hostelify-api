@@ -6,7 +6,7 @@ const AdminModel = require('../models/admin');
 
 const generateAuthToken = async (user) => {
   try {
-    const token = await sign(user, 'basheer');
+    const token = await sign(user, process.env.JWT_SECRET);
     return token;
   } catch (err) {
     console.log('generate auth function', err);
@@ -90,6 +90,7 @@ exports.AdminLogin = async (req, res) => {
 exports.AdminSignout = async (req, res) => {
   try {
     const user = await AdminModel.findById(req.user._id);
+    console.log(user);
     user.tokens = [];
     user.save();
     res.status(200).json({
