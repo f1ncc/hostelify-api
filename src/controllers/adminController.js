@@ -6,7 +6,7 @@ const AdminModel = require('../models/admin');
 
 const generateAuthToken = async (user) => {
   try {
-    const token = await sign(user, 'basheer');
+    const token = await sign(user, process.env.JWT_SECRET);
     return token;
   } catch (err) {
     console.log('generate auth function', err);
@@ -90,6 +90,7 @@ exports.AdminLogin = async (req, res) => {
 exports.AdminSignout = async (req, res) => {
   try {
     const user = await AdminModel.findById(req.user._id);
+    console.log(user);
     user.tokens = [];
     user.save();
     res.status(200).json({
@@ -105,6 +106,24 @@ exports.AdminSignout = async (req, res) => {
   }
 };
 
+/**
+ * editing the details of admin
+ */
+exports.AdminUpdate = async (req, res) => {
+  try {
+    const user = await AdminModel.findByIdAndUpdate(
+      { _id: req.user._id },
+      req.body
+    );
+    const updatedUser = await user.save();
+    res.status(200).send({
+      message: 'success',
+      data: updatedUser,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 /**
  * only for testing and debugging
  * hence in development mode
