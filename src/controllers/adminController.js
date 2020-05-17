@@ -107,6 +107,24 @@ exports.AdminSignout = async (req, res) => {
 };
 
 /**
+ * editing the details of admin
+ */
+exports.AdminUpdate = async (req, res) => {
+  try {
+    const user = await AdminModel.findByIdAndUpdate(
+      { _id: req.user._id },
+      req.body
+    );
+    const updatedUser = await user.save();
+    res.status(200).send({
+      message: 'success',
+      data: updatedUser,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+/**
  * only for testing and debugging
  * hence in development mode
  */
