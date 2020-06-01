@@ -89,6 +89,7 @@ exports.AdminLogin = async (req, res) => {
  */
 exports.AdminSignout = async (req, res) => {
   try {
+    console.log(req.user._id);
     const user = await AdminModel.findById(req.user._id);
     console.log(user);
     user.tokens = [];
@@ -113,7 +114,8 @@ exports.AdminUpdate = async (req, res) => {
   try {
     const user = await AdminModel.findByIdAndUpdate(
       { _id: req.user._id },
-      req.body
+      req.body,
+      { new: true, runValidators: true }
     );
     const updatedUser = await user.save();
     res.status(200).send({
