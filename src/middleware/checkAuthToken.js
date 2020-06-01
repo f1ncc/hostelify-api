@@ -7,8 +7,8 @@ module.exports = async (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
 
     const { user } = await verify(token, process.env.JWT_SECRET);
-    console.log(user);
-    const userExist = await adminModel.findOne({ email: user.email });
+
+    const userExist = await adminModel.findOne({ _id: user._id });
     if (!userExist) {
       throw new Error('invalid Token');
     }
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
     }
 
     req.user = userExist;
-    console.log(req.user);
+
     next();
   } catch (err) {
     res.status(401).json({
